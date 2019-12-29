@@ -75,6 +75,7 @@ signals:
     void finished(bool success, const QString &errorString);
 
 private slots:
+#ifndef QT_NO_SSL
     void onSslErrors(QNetworkReply *, const QList<QSslError> &errors) {
         QString errorString = tr("The following SSL errors encountered:");
         foreach (const QSslError &error, errors) {
@@ -82,6 +83,7 @@ private slots:
         }
         emit finished(false, errorString);
     }
+#endif
 
     void onAuthenticationRequired() {
         emit finished(false, tr("The server asks for an authentification, do not bother the user with it"));
