@@ -994,7 +994,7 @@ void PackageManagerCorePrivate::writeMaintenanceToolBinary(QFile *const input, q
     qDebug() << "Writing maintenance tool:" << maintenanceToolRenamedName;
     ProgressCoordinator::instance()->emitLabelAndDetailTextChanged(tr("Writing maintenance tool."));
 
-    QTemporaryFile out;
+    QFile out(maintenanceToolRenamedName + QLatin1String(".temp"));
     QInstaller::openForWrite(&out); // throws an exception in case of error
 
     if (!input->seek(0))
@@ -1043,6 +1043,7 @@ void PackageManagerCorePrivate::writeMaintenanceToolBinary(QFile *const input, q
         QInstaller::appendInt64(&out, BinaryContent::MagicCookie);
 #endif
     }
+    out.close();
 
     {
         QFile dummy(maintenanceToolRenamedName);
@@ -1053,7 +1054,7 @@ void PackageManagerCorePrivate::writeMaintenanceToolBinary(QFile *const input, q
     }
 
     if (!out.copy(maintenanceToolRenamedName)) {
-        throw Error(tr("Cannot write maintenance tool to \"%1\": %2").arg(maintenanceToolRenamedName,
+        throw Error(tr("Cannot copy maintenance tool from \"%1\" to \"%2\": %3").arg(out.fileName(), maintenanceToolRenamedName,
             out.errorString()));
     }
 
@@ -1063,6 +1064,10 @@ void PackageManagerCorePrivate::writeMaintenanceToolBinary(QFile *const input, q
         qDebug() << "Wrote permissions for maintenance tool.";
     } else {
         qDebug() << "Failed to write permissions for maintenance tool.";
+    }
+
+    if (out.exists()) {
+        out.remove();
     }
 }
 
