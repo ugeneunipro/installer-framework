@@ -59,6 +59,9 @@
 #include <mach-o/loader.h>
 #endif
 
+#define	EXIT_FAILURE	1	/* Failing exit status.  */
+#define	EXIT_SUCCESS	0	/* Successful exit status.  */
+
 using namespace QInstaller;
 
 struct Input {
@@ -406,7 +409,8 @@ static int assemble(Input input, const QInstaller::Settings &settings, const QSt
     }
 #endif
 
-    QTemporaryFile out;
+    //QTemporaryFile out;
+    QFile out(generateTemporaryFileName());
     QString targetName = input.outputPath;
 #ifdef Q_OS_OSX
     QDir resourcePath(QFileInfo(input.outputPath).dir());
@@ -467,7 +471,7 @@ static int assemble(Input input, const QInstaller::Settings &settings, const QSt
         QFile::remove(tempFile);
         return EXIT_FAILURE;
     }
-    out.setAutoRemove(false);
+    //out.setAutoRemove(false);
 
 #ifndef Q_OS_WIN
     chmod755(out.fileName());
