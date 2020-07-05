@@ -136,7 +136,9 @@ HEADERS += packagemanagercore.h \
     repositorycategory.h \
     componentselectionpage_p.h \
     commandlineparser.h \
-    commandlineparser_p.h
+    commandlineparser_p.h \
+    sendstatisticsoperation_p.h \
+    sendstatisticsoperation.h
 
 SOURCES += packagemanagercore.cpp \
     packagemanagercore_p.cpp \
@@ -214,7 +216,8 @@ SOURCES += packagemanagercore.cpp \
     packagesource.cpp \
     repositorycategory.cpp \
     componentselectionpage_p.cpp \
-    commandlineparser.cpp
+    commandlineparser.cpp \
+    sendstatisticsoperation.cpp
 
 FORMS += proxycredentialsdialog.ui \
     serverauthenticationdialog.ui

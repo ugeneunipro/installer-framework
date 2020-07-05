@@ -59,6 +59,10 @@
 #include <mach-o/loader.h>
 #endif
 
+// ichebyki
+#define	EXIT_FAILURE	1	/* Failing exit status.  */
+#define	EXIT_SUCCESS	0	/* Successful exit status.  */
+
 using namespace QInstaller;
 
 struct Input {

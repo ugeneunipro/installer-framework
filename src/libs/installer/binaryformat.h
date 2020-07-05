@@ -81,7 +81,9 @@ private:
     void setOpenMode(OpenMode mode) { QIODevice::setOpenMode(mode); }
 
 private:
-    QFSFileEngine m_file;
+    // ichebyki
+    // Fix error in framework installer. Info was got from qt gug system
+    QFile m_file;
     QByteArray m_name;
     Range<qint64> m_segment;
 };
