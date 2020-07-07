@@ -91,7 +91,7 @@ unix:INCLUDEPATH += $$IFW_SOURCE_TREE/src/libs/7zip/unix/CPP
 
 LIBS += -L$$IFW_LIB_PATH
 # The order is important. The linker needs to parse archives in reversed dependency order.
-equals(TEMPLATE, app):LIBS += -linstaller
+LIBS += -linstaller
 win32:equals(TEMPLATE, app) {
     LIBS += -luser32
 }

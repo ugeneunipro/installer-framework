@@ -50,11 +50,7 @@
 
 #include <QtUiTools/QUiLoader>
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
-#include <private/qv4engine_p.h>
-#else
 #include <private/qv8engine_p.h>
-#endif
 #include <private/qv4scopedvalue_p.h>
 #include <private/qv4object_p.h>
 
