@@ -48,6 +48,7 @@
 #include "settingsoperation.h"
 #include "consumeoutputoperation.h"
 #include "loggingutils.h"
+#include "sendstatisticsoperation.h"
 
 #include "lib7z_facade.h"
 
@@ -99,6 +100,7 @@ void QInstaller::init()
     factory.registerUpdateOperation<LicenseOperation>(QLatin1String("License"));
     factory.registerUpdateOperation<ConsumeOutputOperation>(QLatin1String("ConsumeOutput"));
     factory.registerUpdateOperation<SettingsOperation>(QLatin1String("Settings"));
+    factory.registerUpdateOperation<SendStatisticsOperation>(QLatin1String("SendStatistics"));
 
     FileDownloaderFactory::setFollowRedirects(true);
 
